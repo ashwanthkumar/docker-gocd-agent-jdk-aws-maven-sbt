@@ -1,17 +1,16 @@
-# gocd-agent-jdk-aws
+# gocd-agent-jdk-aws-maven-sbt
 
-Derived from [ashwanthkumar/gocd-agent-jdk](https://hub.docker.com/r/ashwanthkumar/gocd-agent-jdk/) with the following packages
+Derived from [ashwanthkumar/gocd-agent-jdk-aws](https://hub.docker.com/r/ashwanthkumar/gocd-agent-jdk-aws/) with the following packages
 
-- AWS CLI
-- s3cmd
-- s4cmd
+- Maven
+- SBT
 
 ---
 
 # Usage
 To run this docker container use the following command
 ```
-docker run -d ashwanthkumar/gocd-agent-jdk-aws:latest
+docker run -d ashwanthkumar/gocd-agent-jdk-aws-maven-sbt:latest
 ```
 
 # Environment variables
@@ -35,7 +34,7 @@ To connect the agent to your server with other than default ip or hostname
 ```
 docker run -d \
     -e "GO_SERVER=gocd.yourdomain.com" \
-    ashwanthkumar/gocd-agent-jdk-aws:latest
+    ashwanthkumar/gocd-agent-jdk-aws-maven-sbt:latest
 ```
 
 If you've set up your server for autoregistration of agents pass in the same value for environment variable `AGENT_KEY` when starting the agent
@@ -44,7 +43,7 @@ If you've set up your server for autoregistration of agents pass in the same val
 docker run -d \
     -e "GO_SERVER=gocd.yourdomain.com" \
     -e "AGENT_KEY=388b633a88de126531afa41eff9aa69e" \
-    ashwanthkumar/gocd-agent-jdk-aws:latest
+    ashwanthkumar/gocd-agent-jdk-aws-maven-sbt:latest
 ```
 
 You can also set resource tags, gocd environment and hostname for the agent when autoregistering
@@ -56,7 +55,7 @@ docker run -d \
     -e "AGENT_RESOURCES=deploy-x,deploy-z" \
     -e "AGENT_ENVIRONMENTS=Production" \
     -e "AGENT_HOSTNAME=deploy-agent-01" \
-    ashwanthkumar/gocd-agent-jdk-aws:latest
+    ashwanthkumar/gocd-agent-jdk-aws-maven-sbt:latest
 ```
 
 To mount docker socket and be able to use it sudo-less inside the container use the following
@@ -67,7 +66,7 @@ docker run -d \
     -e "DOCKER_GID_ON_HOST=$(getent group docker | cut -d: -f3)" \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /usr/bin/docker:/usr/bin/docker \
-    ashwanthkumar/gocd-agent-jdk-aws:latest
+    ashwanthkumar/gocd-agent-jdk-aws-maven-sbt:latest
 ```
 
 Do be aware that mounting docker inside your container poses a large security risk as the container indirectly has access to the whole machine in this way.
@@ -97,7 +96,7 @@ docker run -d \
     -v /mnt/persistent-disk/gocd-agent/ssh:/var/go/.ssh
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /usr/bin/docker:/usr/bin/docker \
-    ashwanthkumar/gocd-agent-jdk-aws:latest
+    ashwanthkumar/gocd-agent-jdk-aws-maven-sbt:latest
 ```
 
 To make sure the process in the container can read and write to those directories create a user and group with same gid and uid on the host machine
