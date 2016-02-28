@@ -1,4 +1,4 @@
-FROM ashwanthkumar/gocd-agent-jdk-aws:16.2.1
+FROM ashwanthkumar/gocd-agent-jdk-aws:latest
 
 MAINTAINER Ashwanth Kumar
 
